@@ -23,24 +23,24 @@ sales_persons = {
     123: [7, 8, 9]
 }
 
-file_location = config.local_directory + "sales_team_data_mart"
+file_location = config.local_directory + "sales_partition_data"
 
 if not os.path.exists(file_location):
     os.makedirs(file_location)
 
-input_date_str = input("Enter the date for which you want to generate (YYYY-MM-DD): ")
-input_date = datetime.strptime(input_date_str, "%Y-%m-%d")
+date_time = datetime.now();
+sales_dt = date_time.strftime("%Y-%m-%d")
 
-csv_file_path = os.path.join(file_location, f"sales_data_{input_date_str}.csv")
+csv_file_path = os.path.join(file_location, f"sales_data_{date_time.strftime('%Y-%m-%d-%s')}.csv")
 with open(csv_file_path, "w", newline="") as csvfile:
     csvwriter = csv.writer(csvfile)
     csvwriter.writerow(["customer_id", "store_id", "product_name", "sales_date", "sales_person_id", "price", "quantity", "total_cost", "payment_mode"])
 
-    for _ in range(1000):
+    for _ in range(500000):
         customer_id = random.choice(customer_ids)
         store_id = random.choice(store_ids)
         product_name = random.choice(list(product_data.keys()))
-        sales_date = input_date
+        sales_date = sales_dt
         sales_person_id = random.choice(sales_persons[store_id])
         quantity = random.randint(1, 10)
         price = product_data[product_name]
@@ -48,6 +48,6 @@ with open(csv_file_path, "w", newline="") as csvfile:
         payment_mode = random.choice(["cash", "UPI"])
 
         csvwriter.writerow(
-            [customer_id, store_id, product_name, sales_date.strftime("%Y-%m-%d"), sales_person_id, price, quantity, total_cost, payment_mode])
+            [customer_id, store_id, product_name, sales_date, sales_person_id, price, quantity, total_cost, payment_mode])
 
     print("CSV file generated successfully:", csv_file_path)
