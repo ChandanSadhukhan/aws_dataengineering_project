@@ -1,7 +1,7 @@
 import base64
 from Cryptodome.Cipher import AES
 from Cryptodome.Protocol.KDF import PBKDF2
-import os, sys
+import sys
 from resource.dev import config
 # from logging_config import logger
 
