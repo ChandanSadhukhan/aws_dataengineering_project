@@ -16,6 +16,5 @@ def spark_session() :
         return None
 
 
-
 # test
 session = spark_session()
