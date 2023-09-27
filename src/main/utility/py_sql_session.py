@@ -6,7 +6,7 @@ config = {
     "user": config.sql_properties["user"],
     "password": config.sql_properties["password"],
     "host": config.sql_properties["host"],
-    "database": config.database_name,
+    "database": config.database_name
 }
 
 # Create a connection to the MySQL database
